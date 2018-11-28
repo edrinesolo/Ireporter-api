@@ -1,1 +1,5 @@
-/ENV
+ENV/
+.vscode/
+app/__pycache__/
+tests/__pycache__/
+
