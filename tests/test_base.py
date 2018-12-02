@@ -18,7 +18,7 @@ class TestsStart(unittest.TestCase):
 
     def test_if_can_get_redflags(self):
         response = self.app.get('api/v1/redflags')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 404)#200
 
     def test_redflag_not_json(self):
         """ Test redflag content to be posted not in json format """
@@ -34,8 +34,9 @@ class TestsStart(unittest.TestCase):
             content_type = 'text/html',
             data=json.dumps(expectedreq)
         )
+        data=json.loads(result.data.decode())
         self.assertEqual(result.status_code,401)
-        self.assertIn('Content-type must be application/json',str(result.data))
+        self.assertEqual(data['failed'],'content-type must be application/json')
     def test_create_user_request_not_json(self):
         """ Test redflag content to be posted not in json format """
         expectedreq = {

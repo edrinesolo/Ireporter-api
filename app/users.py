@@ -39,7 +39,8 @@ def create_user():
         "phone_number": request_data['phone_number'],
         "email": request_data['email'],
         "password": request_data['password'],
-        "joined": datetime.datetime.now()
+        "joined": datetime.datetime.now(),
+        "is_admin":request_data['is_admin']
 
     }
     if len(users) == 0:
@@ -56,7 +57,7 @@ def create_user():
 
 
 @user_print.route('/api/v1/users/<int:id>/redflags')
-def get_user_parcels(id):
+def get_user_redflags(id):
     """
     returns redflags created by a user given the users id
     """

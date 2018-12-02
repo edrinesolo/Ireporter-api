@@ -1,68 +1,90 @@
-from flask import Flask, jsonify, request, Response, json, Blueprint,sessions
-
+from flask import Flask,json,jsonify,Blueprint,request
 import datetime
 
-ap = Blueprint('endpoint', __name__)
-reports = []
+ap=Blueprint('incident',__name__)
+reports=[]
+@ap.route('/',methods=['GET'])
+def index():
+    return jsonify({'message':"welcome"}),200
 
- 
-# GET redflags
-@ap.route('/api/v1/redflags')
-def get_redflags():
-    '''
-    returns a list of all requests
-    '''
-    if len(reports) == 0:
-        return jsonify({'msg': 'No redflags yet'}), 200
-    return jsonify({'redflags': reports, 'count': len(reports)}), 200
+@ap.route('/api/v1/red-flags',methods=['GET'])
+def getred_flags():
+        return jsonify({'data':reports}),200
 
-
-# GET redflags/id
-@ap.route('/api/v1/redflags/<int:id>')
-def get_a_redflag(id):
-    '''
-    return  details for a specific redflag
-    '''
-    theredflag = []
-    for report in reports:
-        if report['id'] == id:
-            theredflag.append(report)
-    if len(theredflag) == 0:
-        return jsonify({"msg": "redflag not found"}), 404
-    return jsonify(theredflag[0]), 200
+  #getting a specific red flag
+@ap.route('/api/v1/red-flags/<int:id>',methods=['GET'])
+def get_specific_red_flag(id):
+      #find the item by id
+      for crime in reports:
+            if crime['id'] == id:
+                  return jsonify({'data' :crime}),200
+            return jsonify({'message': 'no item found'}),404
+      
 
 
-# POST /redflags
-@ap.route('/api/v1/redflags', methods=['POST'])
-def add_redflag():
-    '''
-    creates a new redflag
-    '''
-
-    if not request.content_type == 'application/json':
-        return jsonify({"failed": 'Content-type must be application/json'}), 401
-    request_data = request.get_json()
-    if is_valid_request(request_data):
-        report = {
-            'id': len(reports) + 1,
-            'incident_type': request_data['incident_type'],
-            'comment_description': request_data['comment_description'],
-            'status': request_data['status'],
-            'current_location': request_data['current_location'],
-            'video/image': request_data['video/image'],
-            'created': datetime.datetime.now(),
-            'user_id': request_data['user_id']
-            
-        }
-        reports.append(report)
-        response = Response(response=json.dumps({
-            'msg': "redflag successfully created", 'request_id': report.get('id')}),
-            status=201, mimetype="application/json")
-        response.headers['Location'] = "redflags/" + str(report['id'])
-        return response
-    else:
-        response = Response(json.dumps({"error": "Invalid redflag" }), 
-        status=400, mimetype="application/json")
-        return response
+@ap.route('/api/v1/red-flags',methods=['POST'])
+def postred_flags():
+    data=request.get_json()
+    if not request.content_type is 'application/json':
+        return jsonify({"failed": "content-type must be application/json"}), 401
+    
+           
+    crime={
+          "id":len(reports)+1,
+          "created_on":datetime.datetime.utcnow(),
+          "created_by":1,
+          "incident_type":data['incident_type'],
+          "location":data['location'],
+          "status":data['status'],
+          "images":data['image'],
+          "video":data['image'],
+          "comment_description":data['comment_description']
 
 
+    }
+    reports.append(crime)
+    return jsonify({"success":True,"crime":crime.get('id')}),201
+
+#####Editing aspecific flag
+@ap.route('/api/v1/red-flags/<int:id>',methods=['PUT'])
+def update_specific_red_flag(id):
+      if not item_exists(id,reports):
+            return jsonify({'msg':'item not found'}),404
+      #CREATE A NEW LIST OBJECT
+      data=request.get_json()
+            #TODO VALIDATE
+      crime={
+            "id":id,
+            "last_updated_on":datetime.datetime.utcnow(),
+            "created_by":1,
+            "incident_type":data['incident_type'],
+            "location":data['location'],
+            "status":data['status'],
+            "images":data['image'],
+            "video":data['image'],
+            "comment_description":data['comment_description']
+
+
+      }
+      for i in reports:
+          if i['id']==id:
+                pass
+      return jsonify({"msg":"updated"}),200
+
+@ap.route('/api/v1/red-flags/<int:id>',methods=['DELETE'])
+def delete_red_flags(id):
+    #find the item by id
+    if not item_exists(id,reports):
+       return jsonify({'msg':'item not found'}),404
+
+    for crime in reports:
+        if crime['id']==id:
+           reports.remove(crime)
+    return jsonify({'Message': "item deleted"}),200
+    
+
+def item_exists(item_id,itemlist):
+      for item in itemlist:
+            if item['id']==item_id:
+                  return True
+      return False

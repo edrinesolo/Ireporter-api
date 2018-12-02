@@ -11,7 +11,7 @@ class Report():
         self.comment_description = comment_description,
         self.status = status,
         self.current_location = current_location,
-        self.created = created,
+        self.created_on = created_on,
         self.user_id = user_id
 
     def __str__(self):
