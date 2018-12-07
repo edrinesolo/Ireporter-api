@@ -1,0 +1,4 @@
+{
+  "tests/test_reports.py::TestsReports::test_get_a_no_redflags_message": true,
+  "tests/test_reports.py::TestsUsers::test_get_a_no_redflags_message": true
+}
