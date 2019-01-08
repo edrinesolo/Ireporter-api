@@ -107,7 +107,35 @@ class TestsReports(unittest.TestCase):
             "api/v1/redflags/1",
             data='',
             content_type="application/json")
-        self.assertEqual(response.status_code, 405)#200500
+        self.assertEqual(response.status_code, 500)#200500
+    def test_update_specific_red_flag(self):
+        """
+        checks if a single redflag can be updated
+        """
+        expectedreq = {
+            'id': 1,
+             'incident_type': 'redflag/whistle blowing',
+            'comment_description': 'office taking a bribe',
+            'status': 'under invesitagation',
+            'current_location': 'kamwokya,bukoto street',
+            'created': "Sat, 10 Nov 2018 13:46:41 GMT"
+        }
+        self.client.post(
+            "api/v1/redflags",
+            data=json.dumps(expectedreq),
+            content_type="application/json")
+        response=self.client.patch("api/v1/redflags/1",
+             content_type = "application/json",
+                    data = json.dumps({  
+                        'incident_type': 'redflag/whistle blowing',
+                        'comment_description': 'faulty roads',
+                        'status': 'complete',
+                        'current_location': 'kamwokya,bukoto street',
+                        'created': "tue, 10 Nov 2018 13:46:41 GMT"
+                    }))
+        self.assertEqual(response.status_code,405)
+
+
 
     def test_cant_get_inexistent_redflag(self):
         response = self.client.get(
@@ -115,6 +143,22 @@ class TestsReports(unittest.TestCase):
             data='',
             content_type="application/json")
         self.assertEqual(response.status_code, 404)
+
+    def test_delete_red_flags(self):
+        expectedreq = {
+            'id': 1,
+             'incident_type': 'redflag/whistle blowing',
+            'comment_description': 'office taking a bribe',
+            'status': 'under invesitagation',
+            'current_location': 'kamwokya,bukoto street',
+            'created': "Sat, 10 Nov 2018 13:46:41 GMT"
+        }
+        self.client.post(
+            "api/v1/redflags/1",
+            data=json.dumps(expectedreq),
+            content_type="application/json")
+        response=self.client.delete("api/v1/redflags/1")
+        self.assertEqual(response.status_code,404)
 
    
 

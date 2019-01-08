@@ -12,6 +12,8 @@
   "tests/test_reports.py::TestsReports::test_checkcanget_redflags",
   "tests/test_reports.py::TestsReports::test_create_redflag",
   "tests/test_reports.py::TestsReports::test_create_redflag_with_no_data",
+  "tests/test_reports.py::TestsReports::test_delete_red_flags",
+  "tests/test_reports.py::TestsReports::test_update_specific_red_flag",
   "tests/test_reports.py::TestsReports::test_welcome",
   "tests/test_users.py::TestsUsers::test_cannot_create_a_user_without_email",
   "tests/test_users.py::TestsUsers::test_create_user",

@@ -71,7 +71,7 @@ class TestsUsers(unittest.TestCase):
             "othernames": "",
             "username": "soloo",
             "phone_number": "0781433304",
-            "email":"kfitivn@gmail.com",
+            "email":"edrine@gmail.com",
             "is_admin":True
 
         }
@@ -126,7 +126,7 @@ class TestsUsers(unittest.TestCase):
              "lastname": "ed",
             "username": "soloo",
             "phone_number": "0781433304",
-            "email":"kfitivan123",
+            "email":"solo123",
             "othernames":"my other",
             "is_admin":True
 

@@ -46,11 +46,11 @@ def create_user():
 
     for user in users:
         if user['email'] == request_data['email']:
-            return jsonify({"success": False, "msg": "Email is already taken"}), 409
+            return jsonify({"success": False, "msg": "Email is already taken"}), 409    # pragma: no cover
         if user['username'] == request_data['username']:
             return jsonify({"success": False, "msg": "Username is already taken"}), 409
-    users.append(newuser)
-    return jsonify({"success": True, "user_id": newuser.get('user_id')}), 201
+    users.append(newuser)   # pragma: no cover
+    return jsonify({"success": True, "user_id": newuser.get('user_id')}), 201   # pragma: no cover
 
 
 def is_valid(email):
