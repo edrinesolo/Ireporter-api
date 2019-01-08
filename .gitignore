@@ -4,5 +4,5 @@ ENV/
 app/__pycache__/
 tests/__pycache__/
 app/views/__pycache__
-manage.py
+
 
