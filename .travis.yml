@@ -10,7 +10,7 @@ script:
   
   - python manage.py test
   - python manage.py cov
-  - coverage html
+  
 
 sudo: required
 
