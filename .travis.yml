@@ -7,8 +7,7 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - python manage.py test
-  - python manage.py cov
+  - pytest --cov --disable-warnings
 
 sudo: required
 
