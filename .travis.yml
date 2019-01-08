@@ -8,6 +8,8 @@ install:
 # command to run tests
 script:
   - pytest --cov --disable-warnings
+  - python manage.py test
+  - python manage.py cov
 
 sudo: required
 
