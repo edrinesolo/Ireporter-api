@@ -48,7 +48,6 @@ py.test
 | -------- | ------------- | --------- |
 | `api/v1/redflags` | `POST`  | Creates a new Redflag|
 | `api/v1/redflags/<int:id>` | `GET` | Retrieves a specific redflag given its identifier|
-| 
 | `api/v1/users` | `GET` | Retrieve all users |
 | `api/v1/users` | `POST` |  Creates a new User |
 | 
