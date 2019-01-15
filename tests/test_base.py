@@ -24,15 +24,16 @@ class TestsStart(unittest.TestCase):
     def test_redflag_not_json(self):
         """ Test redflag content to be posted not in json format """
         expectedreq ={
-	
-        "comment":"corrupt officer",
-        "type":"Red_flag",
-        "location":"kamwokya",
-        "status":"investigation",
-        "image":"",
-        "video":""
-
-        }
+            "id":"1",
+            "created_on":"22hrs",
+            "created_by":"1",
+            "type":"intervene",
+            "location":"kampala",
+            "status":"pending",
+            "image":"image",
+            "video":"video",
+            "comment":"invesitgation on going"
+            }
         result = self.app.post(
             '/api/v1/redflags',
             content_type = 'text/html',
@@ -45,12 +46,18 @@ class TestsStart(unittest.TestCase):
     def test_create_user_request_not_json(self):
         """ Test redflag content to be posted not in json format """
         expectedreq = {
-             'incident_type': 'government intervention',
-            'comment_description': 'broken bridge at river nile',
-            'status': 'bidding',
-            'current_location': 'jinja',
-            'created': 'dec 29 2018 : 01:04AM'
-        }
+            
+                "user_id": "1",
+                "firstname":"sabaalo",
+                "lastname":"solomon",
+                "othernames":"edrine",
+                "email":"edrinesolomon@gmail",
+                "phone_number":"0781433304",
+                "username":"edrinesolo",
+                "registered":"09/02/2019",
+                "is_admin":"true"
+
+            }
         result = self.app.post(
             '/api/v1/users',
             content_type = 'text/html',
