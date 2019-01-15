@@ -20,7 +20,7 @@ source "name of the virtual environment/bin/activate
 * Navigate to the application directory:
 
 ```
-cd SendRestApi
+cd Ireporter-api
 ```
 
 * Create a virtual environment to install the
