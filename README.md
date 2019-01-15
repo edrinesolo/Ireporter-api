@@ -5,3 +5,51 @@
 # Ireporter-api
 REST api for the ireporter project
 
+## Installation
+
+Create a virtual environment for the project.
+
+```
+virtualenv "name of the virtual environment"
+```
+Then Activate the venv using:
+```
+source "name of the virtual environment/bin/activate
+```
+
+* Navigate to the application directory:
+
+```
+cd SendRestApi
+```
+
+* Create a virtual environment to install the
+application in. You could install virtualenv and virtualenvwrapper.
+Within your virtual environment, install the application package dependencies with:
+
+```
+pip install -r requirements.txt
+```
+
+* Run the application with:
+
+```
+python run.py
+```
+* for tests run in terminal using:
+
+```
+py.test
+```
+
+#### URL endpoints
+
+| URL Endpoint | HTTP Methods | Summary |
+| -------- | ------------- | --------- |
+| `api/v1/redflags` | `POST`  | Creates a new Redflag|
+| `api/v1/redflags/<int:id>` | `GET` | Retrieves a specific redflag given its identifier|
+| 
+| `api/v1/users` | `GET` | Retrieve all users |
+| `api/v1/users` | `POST` |  Creates a new User |
+| 
+
