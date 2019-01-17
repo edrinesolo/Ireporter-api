@@ -58,7 +58,7 @@ py.test
 ```
 Example body
 {
-    firstname":"sabaalo",
+    "firstname":"sabaalo",
         "lastname":"solomon",
         "othernames":"edrine",
         "email":"edrinesolomon@gmail.com",
