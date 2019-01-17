@@ -85,7 +85,7 @@ Example body
 }
 ```
 # Deployement
-[Heroku Deployement](https: // ireporter - --v1.herokuapp.com)
+[Heroku Deployement](https://ireporter---v1.herokuapp.com)
 
 # Author
-[Edrine Solomon](https: // github.com / edrinesolo)
+[Edrine Solomon](https://github.com/edrinesolo)
