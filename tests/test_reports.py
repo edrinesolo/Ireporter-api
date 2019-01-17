@@ -41,7 +41,7 @@ class TestsReports(unittest.TestCase):
             "api/v1/redflags",
             data=json.dumps(expectedreq),
             content_type="application/json")
-        
+
         self.assertEqual(response.status_code, 500)
 
     def test_create_redflag(self):

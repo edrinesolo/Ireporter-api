@@ -29,7 +29,7 @@ def get_specific_red_flag(redflag_id):
     """
       return all redflags given the id
     """
-    if not item_exists(redflag_id,reports):
+    if not item_exists(redflag_id, reports):
         return jsonify({'msg': 'RedFlag not Found'}), 404
 
     for report in reports:
@@ -47,7 +47,7 @@ def postred_flags():
         return jsonify(
             {"failed": "content-type must be application/json"}), 401
     request_data = request.get_json()
- 
+
     report = {
         "id": len(reports) + 1,
         "created_on": datetime.datetime.utcnow(),
@@ -102,6 +102,7 @@ def delete_red_flags(redflag_id):
         if report['id'] == redflag_id:
             reports.remove(report)
     return jsonify({'Message': "RedFlag deleted"}), 200
+
 
 @incident.route('/api/v1/redflags/<int:redflag_id>', methods=['PATCH'])
 def edit_comment_of_a_redfag(redflag_id):
