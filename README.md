@@ -1,6 +1,7 @@
-[![Build Status](https: // travis - ci.org / edrinesolo / Ireporter - api.svg?branch=develop)](https: // travis - ci.org / edrinesolo / Ireporter - api)
-[![Coverage Status](https: // coveralls.io / repos / github / edrinesolo / Ireporter - api / badge.svg?branch=develop)](https: // coveralls.io / github / edrinesolo / Ireporter - api?branch=develop)
-[![Maintainability](https: // api.codeclimate.com / v1 / badges / f4ebb30e428384336ca5 / maintainability)](https: // codeclimate.com / github / edrinesolo / Ireporter - api / maintainability)
+[![Build Status](https://travis-ci.org/edrinesolo/Ireporter-api.svg?branch=develop)](https://travis-ci.org/edrinesolo/Ireporter-api)
+[![Coverage Status](https://coveralls.io/repos/github/edrinesolo/Ireporter-api/badge.svg?branch=develop)](https://coveralls.io/github/edrinesolo/Ireporter-api?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f4ebb30e428384336ca5/maintainability)](https://codeclimate.com/github/edrinesolo/Ireporter-api/maintainability)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0917007869d84b40a20a38a7afecdf63)](https://www.codacy.com/app/edrinesolo/Ireporter-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=edrinesolo/Ireporter-api&amp;utm_campaign=Badge_Grade)
 
 # Ireporter-api
 REST api for the ireporter project
@@ -46,13 +47,13 @@ py.test
 
 | URL Endpoint | HTTP Methods | Summary |
 | -------- | ------------- | --------- |
-| `api / v1 / redflags` | `POST` | Creates a new Redflag|
-| `api / v1 / redflags / <int: id >` | `GET` | Retrieves a specific redflag given its identifier|
-| `api / v1 / users` | `GET` | Retrieve all users |
-| `api / v1 / users` | `POST` | Creates a new User |
-| `api / v1 / redflags / <int: id >` | `PUT` | Update a specific redflag |
-| `api / v1 / redflags / <int: id >` | `PATCH` | Update a comment record in a red flag |
-| `api / v1 / redflags / <int: id >` | `DELETE` | Delete a Redflags |
+| `api/v1/redflags` | `POST` | Creates a new Redflag|
+| `api/v1/redflags / <int: id >` | `GET` | Retrieves a specific redflag given its identifier|
+| `api/v1/users` | `GET` | Retrieve all users |
+| `api/v1/users` | `POST` | Creates a new User |
+| `api/v1/redflags/<int:id>` | `PUT` | Update a specific redflag |
+| `api/v1/redflags/<int:id>` | `PATCH` | Update a comment record in a red flag |
+| `api/v1/redflags/<int:id>` | `DELETE` | Delete a Redflags |
 
 # Example New User body
 ```
