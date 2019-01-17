@@ -50,5 +50,43 @@ py.test
 | `api/v1/redflags/<int:id>` | `GET` | Retrieves a specific redflag given its identifier|
 | `api/v1/users` | `GET` | Retrieve all users |
 | `api/v1/users` | `POST` |  Creates a new User |
-| 
+| `api/v1/redflags/<int:id>` | `PUT` | Update a specific redflag |
+| `api/v1/redflags/<int:id>` | `PATCH` | Update a comment record in a red flag |
+| `api/v1/redflags/<int:id>`  |  `DELETE` |Delete a Redflags |
+
+#### Example New User body
+```
+Example body
+{
+    firstname":"sabaalo",
+        "lastname":"solomon",
+        "othernames":"edrine",
+        "email":"edrinesolomon@gmail.com",
+        "phone_number":"0781433304",
+        "username":"edrinesolo",
+        "registered":"09/02/2019",
+        "is_admin":"true"
+	
+}
+```
+#### Example New RedFlag Body
+```
+{
+	"comment": "invesitgation on going",
+        "created_by": 1,
+        "created_on": "Thu, 17 Jan 2019 10:13:51 GMT",
+        "id": 3,
+        "image": "image",
+        "location": "makindye",
+        "status": "rejected",
+        "type": "redflag",
+        "video": "image"
+}
+```
+## Deployement
+[Heroku Deployement](https://ireporter---v1.herokuapp.com)
+
+## Author 
+[Edrine Solomon](https://github.com/edrinesolo)
+
 
