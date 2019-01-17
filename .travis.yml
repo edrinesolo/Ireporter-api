@@ -8,8 +8,6 @@ install:
 # command to run tests
 script:
   
-  - python manage.py test
-  - python manage.py cov
   - pytest --cov
 
 
