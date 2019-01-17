@@ -86,7 +86,7 @@ def update_specific_red_flag(redflag_id):
     }
     for i in reports:
         if i['id'] == redflag_id:
-            reports.append(report)
+            i.update(report)
     return jsonify({"msg": "updated"}), 200
 
 
@@ -102,6 +102,17 @@ def delete_red_flags(redflag_id):
         if report['id'] == redflag_id:
             reports.remove(report)
     return jsonify({'Message': "RedFlag deleted"}), 200
+
+@incident.route('/api/v1/redflags/<int:redflag_id>', methods=['PATCH'])
+def edit_comment_of_a_redfag(redflag_id):
+    data = request.get_json()
+    if not item_exists(redflag_id, reports):
+        return jsonify({'msg': 'redflag not found'}), 404
+    for i in reports:
+        if i['id'] == redflag_id:
+            i['comment'] = data['comment']
+
+            return jsonify({'msg': 'comment updated'}), 200
 
 
 def item_exists(item_id, itemlist):
