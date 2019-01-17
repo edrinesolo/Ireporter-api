@@ -41,7 +41,7 @@ class TestsReports(unittest.TestCase):
             "api/v1/redflags",
             data=json.dumps(expectedreq),
             content_type="application/json")
-        # we should get this on successful creation
+        
         self.assertEqual(response.status_code, 500)
 
     def test_create_redflag(self):
@@ -90,7 +90,7 @@ class TestsReports(unittest.TestCase):
     def test_checkcanget_redflags(self):
         '''
         checks
-        :return:
+        :return:red flags
         '''
         response = self.client.get("api/v1/redflags")
         # we should get an ok on successful creation
@@ -153,7 +153,7 @@ class TestsReports(unittest.TestCase):
                                          "video": "video",
                                          "comment": "invesitgation on going"
                                      }))
-        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response.status_code, 404)
 
     def test_cant_get_inexistent_redflag(self):
         response = self.client.get(
