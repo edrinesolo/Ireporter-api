@@ -3,6 +3,7 @@ import unittest
 import json
 import datetime
 
+
 class TestsReports(unittest.TestCase):
     def setUp(self):
         self.client = app.test_client(self)
@@ -13,10 +14,10 @@ class TestsReports(unittest.TestCase):
             incident_type='red flag',
             comment_description='officer taking a bribe',
             status='under invesitagation',
-            current_location= 'kamwokya,bukoto street',
+            current_location='kamwokya,bukoto street',
             created=datetime.datetime.now(),
             user_id=1
-           
+
         )
 
     def test_welcome(self):
@@ -48,16 +49,16 @@ class TestsReports(unittest.TestCase):
         checks if a redflag can be created
         """
         expectedreq = {
-            "id":"1",
-            "created_on":"22hrs",
-            "created_by":"1",
-            "type":"intervene",
-            "location":"kampala",
-            "status":"pending",
-            "image":"image",
-            "video":"video",
-            "comment":"invesitgation on going"
-            }
+            "id": "1",
+            "created_on": "22hrs",
+            "created_by": "1",
+            "type": "intervene",
+            "location": "kampala",
+            "status": "pending",
+            "image": "image",
+            "video": "video",
+            "comment": "invesitgation on going"
+        }
         response = self.client.post(
             "api/v1/redflags",
             data=json.dumps(expectedreq),
@@ -69,16 +70,16 @@ class TestsReports(unittest.TestCase):
         checks if a redflag can not be created without a user
         """
         expectedreq = {
-            "id":"1",
-            "created_on":"22hrs",
-            "created_by":"1",
-            "type":"intervene",
-            "location":"kampala",
-            "status":"pending",
-            "image":"image",
-            "video":"video",
-            "comment":"invesitgation on going"
-            }
+            "id": "1",
+            "created_on": "22hrs",
+            "created_by": "1",
+            "type": "intervene",
+            "location": "kampala",
+            "status": "pending",
+            "image": "image",
+            "video": "video",
+            "comment": "invesitgation on going"
+        }
         response = self.client.post(
             "api/v1/redflags",
             data=json.dumps(expectedreq),
@@ -100,16 +101,16 @@ class TestsReports(unittest.TestCase):
         checks if a single redflag can be returned given its id
         """
         expectedreq = {
-            "id":"1",
-            "created_on":"22hrs",
-            "created_by":"1",
-            "type":"intervene",
-            "location":"kampala",
-            "status":"pending",
-            "image":"image",
-            "video":"video",
-            "comment":"invesitgation on going"
-            }
+            "id": "1",
+            "created_on": "22hrs",
+            "created_by": "1",
+            "type": "intervene",
+            "location": "kampala",
+            "status": "pending",
+            "image": "image",
+            "video": "video",
+            "comment": "invesitgation on going"
+        }
         self.client.post(
             "api/v1/redflags",
             data=json.dumps(expectedreq),
@@ -119,41 +120,40 @@ class TestsReports(unittest.TestCase):
             data='',
             content_type="application/json")
         self.assertEqual(response.status_code, 200)
+
     def test_update_specific_red_flag(self):
         """
         checks if a single redflag can be updated
         """
         expectedreq = {
-            "id":"1",
-            "created_on":"22hrs",
-            "created_by":"1",
-            "type":"intervene",
-            "location":"kampala",
-            "status":"pending",
-            "image":"image",
-            "video":"video",
-            "comment":"invesitgation on going"
-            }
+            "id": "1",
+            "created_on": "22hrs",
+            "created_by": "1",
+            "type": "intervene",
+            "location": "kampala",
+            "status": "pending",
+            "image": "image",
+            "video": "video",
+            "comment": "invesitgation on going"
+        }
         self.client.post(
             "api/v1/redflags",
             data=json.dumps(expectedreq),
             content_type="application/json")
-        response=self.client.patch("api/v1/redflags/1",
-             content_type = "application/json",
-                    data = json.dumps({
-            "id":"1",
-            "created_on":"22hrs",
-            "created_by":"1",
-            "type":"redflag",
-            "location":"kampala",
-            "status":"pending",
-            "image":"image",
-            "video":"video",
-            "comment":"invesitgation on going"
-            }))
-        self.assertEqual(response.status_code,405)
-
-
+        response = self.client.patch("api/v1/redflags/1",
+                                     content_type="application/json",
+                                     data=json.dumps({
+                                         "id": "1",
+                                         "created_on": "22hrs",
+                                         "created_by": "1",
+                                         "type": "redflag",
+                                         "location": "kampala",
+                                         "status": "pending",
+                                         "image": "image",
+                                         "video": "video",
+                                         "comment": "invesitgation on going"
+                                     }))
+        self.assertEqual(response.status_code, 405)
 
     def test_cant_get_inexistent_redflag(self):
         response = self.client.get(
@@ -164,24 +164,23 @@ class TestsReports(unittest.TestCase):
 
     def test_delete_red_flags(self):
         expectedreq = {
-            "id":"1",
-            "created_on":"22hrs",
-            "created_by":"1",
-            "type":"intervene",
-            "location":"kampala",
-            "status":"pending",
-            "image":"image",
-            "video":"video",
-            "comment":"invesitgation on going"
-            }
+            "id": "1",
+            "created_on": "22hrs",
+            "created_by": "1",
+            "type": "intervene",
+            "location": "kampala",
+            "status": "pending",
+            "image": "image",
+            "video": "video",
+            "comment": "invesitgation on going"
+        }
         self.client.post(
             "api/v1/redflags/1",
             data=json.dumps(expectedreq),
             content_type="application/json")
-        response=self.client.delete("api/v1/redflags/1")
-        self.assertEqual(response.status_code,200)
+        response = self.client.delete("api/v1/redflags/1")
+        self.assertEqual(response.status_code, 200)
 
-   
 
 if __name__ == "__main__":
     unittest.main()

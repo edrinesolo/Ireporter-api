@@ -2,42 +2,38 @@ import datetime
 import re
 
 
+users = []
 
 
 class User:
     """
    user data structure
     """
-    
-    
-
 
     def __init__(self):
         self.users = []
-      
-    def is_user_exist(self, id):
+
+    def is_user_exist(self, uid):
         """check if parcel not exist in the parcel list """
         for user in self.users:
-            if user['user_id'] == id:
+            if user['user_id'] == uid:
                 return True
 
     def create_new_user(self, request_data):
         self.newuser = {
             "user_id": len(users) + 1,
-            "firstname":request_data['firstname'],
-            "lastname":request_data['lastname'],
-            "othernames":request_data['othernames'],
-            "email":request_data['email'],
-            "phone_number":request_data['phone_number'],
-            "username":request_data['username'],
+            "firstname": request_data['firstname'],
+            "lastname": request_data['lastname'],
+            "othernames": request_data['othernames'],
+            "email": request_data['email'],
+            "phone_number": request_data['phone_number'],
+            "username": request_data['username'],
             "joined": datetime.datetime.now(),
-            "is_admin":request_data['is_admin']
+            "is_admin": request_data['is_admin']
 
         }
         self.users.append(self.newuser)
         return {"msg": "user created", "user": self.newuser.get('user_id')}
-
-   
 
     def is_valid_user_request(self, newuser):
         """
@@ -57,13 +53,13 @@ class User:
             return False
         return True
 
-    def user_exists(self, id):
+    def user_exists(self, uid):
         '''
         helper to check user exists
         '''
 
         for user in self.users:
-            if user['user_id'] == id:
+            if user['user_id'] == uid:
                 return True
         return False
 
