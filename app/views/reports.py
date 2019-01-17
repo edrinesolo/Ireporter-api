@@ -1,3 +1,4 @@
+"""report.py """
 import datetime
 from flask import Flask, json, jsonify, Blueprint, request
 
@@ -42,11 +43,19 @@ def postred_flags():
     """
       post a redflag
     """
-
+    request_data = request.get_json()
     if not request.content_type == 'application/json':
         return jsonify(
             {"failed": "content-type must be application/json"}), 401
-    request_data = request.get_json()
+    if 'comment' not in request_data:
+        return jsonify(
+            {'msg': 'comment missing! please supply in the comment'}), 400
+
+    if len(request_data['comment']) < 5:
+        return jsonify(
+            {'message': 'comment too short! please supply long text'}), 400
+
+
 
     report = {
         "id": len(reports) + 1,
@@ -61,7 +70,7 @@ def postred_flags():
     }
     reports.append(report)
     return jsonify({"success": "RedFlag created",
-                    "crime": report.get('id')}), 201
+                    "crime_id": report.get('id')}), 201
 
 
 @incident.route('/api/v1/redflags/<int:redflag_id>', methods=['PUT'])
@@ -106,6 +115,9 @@ def delete_red_flags(redflag_id):
 
 @incident.route('/api/v1/redflags/<int:redflag_id>', methods=['PATCH'])
 def edit_comment_of_a_redfag(redflag_id):
+    """
+      edit comment record in a redflag
+    """
     data = request.get_json()
     if not item_exists(redflag_id, reports):
         return jsonify({'msg': 'redflag not found'}), 404

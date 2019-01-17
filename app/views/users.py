@@ -35,6 +35,15 @@ def create_user():
     except KeyError:
         return jsonify({"success": False, "msg": "Email is missing"}), 400
 
+    if 'username' not in request_data:
+        return jsonify({'msg': 'User must have a username'}), 400
+    if 'firstname' not in request_data:
+
+        return jsonify({'msg': 'firstname must be provided'}), 400
+    if 'lastname' not in request_data:
+
+        return jsonify({'msg': 'lastname must be provided'}), 400
+
     newuser = {
         "user_id": len(users) + 1,
         "firstname": request_data['firstname'],

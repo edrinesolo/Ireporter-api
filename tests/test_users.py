@@ -54,6 +54,72 @@ class TestsUsers(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(response.status_code, 400)
 
+    def test_cannot_create_a_user_without_firstname(self):
+        """
+        checks if cannot create a user who has no firstname
+        """
+        expecteduser_obj = {
+            
+            "lastname": "ed",
+            "othernames": "",
+            "username": "soloo",
+            "email": "edrine@g.co",
+            "phone_number": "0781433304",
+            "is_admin": True
+
+        }
+        response = self.client.post(
+            '/api/v1/users',
+            data=json.dumps(expecteduser_obj),
+            content_type="application/json")
+        data = json.loads(response.data.decode())
+        self.assertEqual(data['msg'], 'firstname must be provided')
+        self.assertEqual(response.status_code, 400)
+
+    def test_cannot_create_a_user_without_lastname(self):
+        """
+        checks if cannot create a user who has no lastname
+        """
+        expecteduser_obj = {
+            
+            "firstname": "solo",
+            "othernames": "",
+            "username": "soloo",
+            "email": "edrine@g.co",
+            "phone_number": "0781433304",
+            "is_admin": True
+
+        }
+        response = self.client.post(
+            '/api/v1/users',
+            data=json.dumps(expecteduser_obj),
+            content_type="application/json")
+        data = json.loads(response.data.decode())
+        self.assertEqual(data['msg'], 'lastname must be provided')
+        self.assertEqual(response.status_code, 400)
+
+    def test_cannot_create_a_user_without_username(self):
+        """
+        checks if cannot create a user who has no usertname
+        """
+        expecteduser_obj = {
+            
+            "firstname": "solo",
+            "lastname": "solo ed",
+            "othernames": "",
+            "email": "edrine@g.co",
+            "phone_number": "0781433304",
+            "is_admin": True
+
+        }
+        response = self.client.post(
+            '/api/v1/users',
+            data=json.dumps(expecteduser_obj),
+            content_type="application/json")
+        data = json.loads(response.data.decode())
+        self.assertEqual(data['msg'], 'User must have a username')
+        self.assertEqual(response.status_code, 400)
+
     def test_user_cannot_have_someones_user_name(self):
         """
         checks if cannot create a user with the same username
