@@ -7,12 +7,7 @@ from app.views.users import is_valid
 class TestsUsers(unittest.TestCase):
     def setUp(self):
         self.client = app.test_client(self)
-
-    def test_create_user(self):
-
-        # checks if a user can be created
-
-        expecteduser_obj = {
+        self.create_user = {
             "firstname": "solo ed",
             "lastname": "ed",
             "othernames": "",
@@ -22,9 +17,15 @@ class TestsUsers(unittest.TestCase):
             "is_admin": True
 
         }
+
+    def test_create_user(self):
+
+        # checks if a user can be created
+
+        
         response = self.client.post(
             "api/v1/users",
-            data=json.dumps(expecteduser_obj),
+            data=json.dumps(self.create_user),
             content_type="application/json")
         results = json.loads(response.data.decode())
 
@@ -125,17 +126,8 @@ class TestsUsers(unittest.TestCase):
         checks if cannot create a user with the same username
         """
         users = []
-        expecteduser_obj = {
-            "firstname": "solo ed",
-            "lastname": "ed",
-            "othernames": "",
-            "username": "soloo",
-            "phone_number": "0781433304",
-            "email": "email000000@test.com",
-            "is_admin": True
-
-        }
-        users.append(expecteduser_obj)
+        
+        users.append(self.create_user)
         user_obj = {
             "firstname": "solo ed",
             "lastname": "ed",
@@ -159,19 +151,10 @@ class TestsUsers(unittest.TestCase):
         checks if cannot create a user with the same email adress
         """
         # usersList = []
-        expecteduser_obj = {
-            "firstname": "solo ed",
-            "lastname": "ed",
-            "othernames": "",
-            "username": "soloo",
-            "phone_number": "0781433304",
-            "email": "email@test.com",
-            "is_admin": False
-
-        }
+        
         self.client.post(
             "api/v1/users",
-            data=json.dumps(expecteduser_obj),
+            data=json.dumps(self.create_user),
             content_type="application/json")
 
         user_obj2 = {
